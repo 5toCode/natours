@@ -1,0 +1,20 @@
+/* Styling (usually resets) universal selector will automatically apply to all elements including pseudo of before and after. 
+Margin/padding better to apply here than on body because of inheritance */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; /* Because we set box-sizing: border-box in the body, all elements will inherit now */
+}
+
+/* Most browsers have a default font-size of 16px so this will set the root font
+size to 10px (for easy calculations) and everything will be based on 1rem units
+ */
+html {
+    font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

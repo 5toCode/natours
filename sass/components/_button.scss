@@ -1,0 +1,91 @@
+.btn {
+    &:link,
+    &:visited {
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 1.5rem 4rem;
+      display: inline-block; /* Should always do this if you want to give some padding to inline elements */
+      border-radius: 10rem;
+      transition: all 200ms;
+      position: relative;
+      font-size: $default-font-size;
+    }
+    
+    &:hover {
+      transform: translateY(-3px); /* Moves up slightly on hover */
+      box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+      &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+      }
+    }
+    
+    &:active {
+      transform: translateY(-1px); /* Moves back down slightly when clicked (already on hover state, so -1px would move it back down 2px */
+      box-shadow: 0 .5rem 1rem rgba($color-black, 0.2); /* Make it appear that the button is further away from the user when clicked */
+    }
+    
+    &--white {
+      background-color: $color-white;
+      color: $color-grey-dark;
+
+      &::after {
+        background-color: $color-white;
+      }
+    }
+
+    &--green {
+      background-color: $color-primary;
+      color: $color-white;
+
+      &::after {
+        background-color: $color-primary;
+      }
+    }
+    
+    /* CSS will create another "element" (pseudoelement) with the following */
+    &::after {
+      content: ""; /* Must have this for the pseudoelement to appear */
+      display: inline-block; /* Same as .btn initial state */
+      height: 100%;
+      width: 100%;
+      border-radius: 10rem;
+      position: absolute; /* Must position parent element (.btn:link, .btn:visited) as relative for this to work */
+      top: 0;
+      left: 0;
+      z-index: -1; /* Hide behind .btn initial state */
+      transition: all 400ms;
+    }
+    
+    &--animated {
+      animation: moveInBottom 500ms ease-out 750ms; /* 750ms delay before starting */
+      animation-fill-mode: backwards; /* Sets the animation properties before the 0% start - in this case opacity 0 and translateX(30px. This prevents the button from showing up and then animating */
+    }
+}
+
+.btn-text {
+
+  &:link,
+  &:visited {
+    font-size: $default-font-size;
+    color: $color-primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid $color-primary;
+    padding: 3px;
+    transition: all 200ms;
+  }
+
+  &:hover {
+    background-color: $color-primary;
+    color: $color-white;
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    box-shadow: 0 .5rem 1rem rgba($color-black, 0.15);
+    transform: translateY(0px);
+  }
+}

@@ -1,105 +1,3 @@
-/* Styling (usually resets) universal selector will automatically apply to all elements including pseudo of before and after. 
-Margin/padding better to apply here than on body because of inheritance */
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-  /* Because we set box-sizing: border-box in the body, all elements will inherit now */
-}
-
-/* Most browsers have a default font-size of 16px so this will set the root 
-font-size to 10px and everything will be based on it using rem
- */
-html {
-  font-size: 62.5%;
-}
-
-/* Set certain properties on the body which all elements will inherit, like font size, line-height and color */
-body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  /* font-size: 16px; */
-  line-height: 1.7;
-  color: #777;
-  padding: 3rem;
-  box-sizing: border-box;
-}
-
-.header {
-  /* 95% of the viewport height */
-  height: 95vh;
-  /* Specifying two background images using a comma */
-  /* Gradient is from top left corner down to bottom right */
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  position: relative;
-  /* Needed since child elements are positioned absolute */
-  /* References the 4 corners of the image and their positioning - See Jonas's explanation */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem;
-  /* 40px down from the top of parent */
-  left: 4rem;
-  /* 40px over from the left of parent */
-}
-
-.header__logo {
-  height: 3.5rem;
-  /* Width not needed, it will automatically compute */
-}
-
-.header__text-box {
-  position: absolute;
-  /* First step in centering */
-  top: 40%;
-  /* Was 50% down from the top of parent (so, center) ...looked too far down so adjusted  */
-  left: 50%;
-  /* Image starts exactly 50% from the left of the parent */
-  transform: translate(-50%, -50%);
-  /* Moves the image 50% to the left and up */
-  text-align: center;
-  /* this will center the button since the button is actually  an 'a' element and is inline */
-}
-
-.heading-primary {
-  color: #fff;
-  text-transform: uppercase;
-  backface-visibility: hidden;
-  /* correct the issue with the animation causing slight vertical shake */
-  margin-bottom: 6rem;
-}
-
-.heading-primary--main {
-  display: block;
-  /* set to block so it will occupy its own line */
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-  /* Other useful animation properties
-    animation-delay: 3s;
-    animation-iteration-count: 3;
-    */
-}
-
-.heading-primary--sub {
-  display: block;
-  /* set to block so it will occupy its own line */
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-  animation: moveInRight 1s ease-out;
-  /* shortcut for animation properties */
-}
-
 @keyframes moveInLeft {
   0% {
     opacity: 0;
@@ -136,8 +34,142 @@ body {
     transform: translate(0);
   }
 }
-.btn:link,
-.btn:visited {
+/* Styling (usually resets) universal selector will automatically apply to all elements including pseudo of before and after. 
+Margin/padding better to apply here than on body because of inheritance */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+  /* Because we set box-sizing: border-box in the body, all elements will inherit now */
+}
+
+/* Most browsers have a default font-size of 16px so this will set the root font
+size to 10px (for easy calculations) and everything will be based on 1rem units
+ */
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+/* Set certain properties on the body which all elements will inherit, like font size, line-height and color */
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #777;
+  padding: 3rem;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  /* correct the issue with the animation causing slight vertical shake */
+  margin-bottom: 6rem;
+}
+.heading-primary--main {
+  display: block;
+  /* set to block so it will occupy its own line */
+  font-size: 6rem;
+  font-weight: 400;
+  letter-spacing: 3.5rem;
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* Other useful animation properties
+    animation-delay: 3s;
+    animation-iteration-count: 3;
+    */
+}
+.heading-primary--sub {
+  display: block;
+  /* set to block so it will occupy its own line */
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1.75rem;
+  animation: moveInRight 1s ease-out;
+  /* shortcut for animation properties */
+}
+
+.heading-secondary {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.2rem;
+  color: transparent;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  display: inline-block;
+  -webkit-background-clip: text;
+  transition: all 200ms;
+}
+.heading-secondary:hover {
+  transform: skewY(2deg) skewX(15deg) scale(1.1);
+  text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.heading-tertiary {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph {
+  font-size: 1.6rem;
+}
+.paragraph:not(:last-child) {
+  margin-bottom: 3rem;
+}
+
+.u-center-text {
+  text-align: center;
+}
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem;
+}
+
+.u-margin-bottom-medium {
+  margin-bottom: 4rem;
+}
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem;
+}
+
+.u-margin-top-big {
+  margin-top: 8rem;
+}
+
+.u-margin-top-huge {
+  margin-top: 10rem;
+}
+
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.15;
+  overflow: hidden;
+}
+.bg-video__content {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.btn {
+  /* CSS will create another "element" (pseudoelement) with the following */
+}
+.btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -148,26 +180,35 @@ body {
   position: relative;
   font-size: 1.6rem;
 }
-
 .btn:hover {
   transform: translateY(-3px);
   /* Moves up slightly on hover */
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
-
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
 .btn:active {
   transform: translateY(-1px);
   /* Moves back down slightly when clicked (already on hover state, so -1px would move it back down 2px */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
   /* Make it appear that the button is further away from the user when clicked */
 }
-
 .btn--white {
   background-color: #fff;
   color: #777;
 }
-
-/* CSS will create another "element" (pseudoelement) with the following */
+.btn--white::after {
+  background-color: #fff;
+}
+.btn--green {
+  background-color: #55c57a;
+  color: #fff;
+}
+.btn--green::after {
+  background-color: #55c57a;
+}
 .btn::after {
   content: "";
   /* Must have this for the pseudoelement to appear */
@@ -184,21 +225,437 @@ body {
   /* Hide behind .btn initial state */
   transition: all 400ms;
 }
-
-.btn--white::after {
-  background-color: #fff;
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
 .btn--animated {
   animation: moveInBottom 500ms ease-out 750ms;
   /* 750ms delay before starting */
   animation-fill-mode: backwards;
   /* Sets the animation properties before the 0% start - in this case opacity 0 and translateX(30px. This prevents the button from showing up and then animating */
+}
+
+.btn-text:link, .btn-text:visited {
+  font-size: 1.6rem;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+  transition: all 200ms;
+}
+.btn-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+.btn-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0px);
+}
+
+.card {
+  perspective: 150rem;
+  /* This has to be on the parent */
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 52rem;
+  /* Required because height collapsed when card side is positioned absolute */
+}
+.card__side {
+  height: 52rem;
+  transition: all 800ms ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* because of position absolute */
+  backface-visibility: hidden;
+  border-radius: 3px;
+  overflow: hidden;
+  /* Needed because the background image overflows the border radius */
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+}
+.card__side--front {
+  background-color: #fff;
+}
+.card__side--back {
+  transform: rotateY(180deg);
+}
+.card__side--back-1 {
+  background-image: linear-gradient(to right bottom, #ffb900, #ff7730);
+}
+.card__side--back-2 {
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+.card__side--back-3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa);
+}
+.card:hover .card__side--front {
+  /* this will select .card:hover .card__side--front */
+  transform: rotateY(-180deg);
+}
+.card:hover .card__side--back {
+  transform: rotateY(0deg);
+}
+.card__picture {
+  background-size: cover;
+  /* Done here so as to not repeat for --1, --2, etc */
+  background-blend-mode: screen;
+  height: 23rem;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  /* compatibility */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.card__picture--1 {
+  background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../img/nat-5.jpg);
+}
+.card__picture--2 {
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(../img/nat-6.jpg);
+}
+.card__picture--3 {
+  background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../img/nat-7.jpg);
+}
+.card__heading {
+  font-size: 2.8rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  text-align: right;
+  color: #fff;
+  position: absolute;
+  top: 12rem;
+  right: 2rem;
+  width: 75%;
+}
+.card__heading-span {
+  padding: 1rem 1.5rem;
+  -webkit-box-decoration-break: clone;
+  /* Needed for Chrome */
+  box-decoration-break: clone;
+  /* Applies the styling (padding) to all boxes created by the span */
+}
+.card__heading-span--1 {
+  background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85));
+}
+.card__heading-span--2 {
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85));
+}
+.card__heading-span--3 {
+  background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85));
+}
+.card__details {
+  padding: 3rem;
+}
+.card__details ul {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+}
+.card__details ul li {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+.card__details ul li:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+.card__cta {
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.card__price-box {
+  margin-bottom: 8rem;
+  color: #fff;
+}
+.card__price-only {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+}
+.card__price-value {
+  font-size: 6rem;
+  font-weight: 100;
+}
+
+.composition {
+  position: relative;
+}
+.composition__photo {
+  width: 55%;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  position: absolute;
+  z-index: 10;
+  transition: all 200ms;
+  outline-offset: 2rem;
+}
+.composition__photo--p1 {
+  left: 0;
+  top: -2rem;
+}
+.composition__photo--p2 {
+  right: 0;
+  top: 2rem;
+}
+.composition__photo--p3 {
+  left: 20%;
+  top: 10rem;
+}
+.composition__photo:hover {
+  outline: 1.5rem solid #55c57a;
+  transform: scale(1.05) translateY(-0.5rem);
+  box-shadow: 0 2.5rem 4rem rgba(0, 0, 0, 0.5);
+  z-index: 20;
+}
+.composition:hover .composition__photo:not(:hover) {
+  transform: scale(0.9);
+}
+
+.feature-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  transition: transform 200ms;
+}
+.feature-box__icon {
+  font-size: 6rem;
+  margin-bottom: 0.5rem;
+  color: transparent;
+  background-image: linear-gradient(to right, #7ed56f, #28b485);
+  display: inline-block;
+  -webkit-background-clip: text;
+}
+.feature-box:hover {
+  transform: translateY(-1.5rem) scale(1.03);
+}
+
+.form__group:not(:last-child) {
+  margin-bottom: 2rem;
+}
+.form__input {
+  font-size: 1.5rem;
+  font-family: inherit;
+  color: inherit;
+  padding: 1.5rem 2rem;
+  border-radius: 2px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-bottom: 3px solid transparent;
+  /* done to prevent shift down when border is added during focus */
+  width: 90%;
+  display: block;
+}
+.form__input:focus {
+  outline: none;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  border-bottom: 3px solid #55c57a;
+}
+.form__input:focus:invalid {
+  border-bottom: 3px solid #ff7730;
+}
+.form__input::-webkit-input-placeholder {
+  color: #999;
+}
+.form__label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 300ms;
+}
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  /* used because we want to animate the effect */
+  visibility: hidden;
+  transform: translateY(-4rem);
+}
+
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+  padding: 6rem;
+  padding-left: 9rem;
+  font-size: 1.6rem;
+  transform: skewX(-12deg);
+  /* Skew the whole story -12deg */
+}
+.story__shape {
+  position: relative;
+  /* Needed for caption absolute positioning */
+  width: 15rem;
+  height: 15rem;
+  float: left;
+  -webkit-shape-outside: circle(50% at 50% 50%);
+  shape-outside: circle(50% at 50% 50%);
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
+  transform: translateX(-3rem) skew(12deg);
+  /* cannot add another transform so adding skew directly */
+}
+.story__img {
+  height: 100%;
+  /* image is wider than it is high */
+  transform: translateX(-4rem) scale(1.4);
+  /* Move img to the left so it is centered + zoom effect */
+  transition: all 500ms;
+}
+.story__text {
+  transform: skewX(12deg);
+  /* Skew in the opposite direction back to normal */
+}
+.story__caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.7rem;
+  text-align: center;
+  opacity: 0;
+  transition: all 500ms;
+}
+.story:hover .story__caption {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+.story:hover .story__img {
+  transform: translateX(-4rem) scale(1);
+  /* Move img to the left so it is centered + zoom effect */
+  filter: blur(3px) brightness(80%);
+}
+
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.row [class^=col-] {
+  float: left;
+}
+.row [class^=col-]:not(:last-child) {
+  margin-right: 6rem;
+}
+.row .col-1-of-2 {
+  width: calc((100% - 6rem) / 2);
+}
+.row .col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3);
+}
+.row .col-2-of-3 {
+  width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem);
+}
+.row .col-1-of-4 {
+  width: calc((100% - 3 * 6rem) / 4);
+}
+.row .col-2-of-4 {
+  width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+}
+.row .col-3-of-4 {
+  width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem);
+}
+
+.header {
+  /* 95% of the viewport height */
+  height: 95vh;
+  /* Specifying two background images using a comma */
+  /* Gradient is from top left corner down to bottom right */
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+  /* Needed since child elements are positioned absolute */
+  /* References the 4 corners of the image and their positioning - See Jonas's explanation */
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* compatibility */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}
+.header__logo-box {
+  position: absolute;
+  top: 4rem;
+  /* 40px down from the top of parent */
+  left: 4rem;
+  /* 40px over from the left of parent */
+}
+.header__logo {
+  height: 3.5rem;
+  /* Width not needed, it will automatically compute */
+}
+.header__text-box {
+  position: absolute;
+  /* First step in centering */
+  top: 40%;
+  /* Was 50% down from the top of parent (so, center) ...looked too far down so adjusted  */
+  left: 50%;
+  /* Image starts exactly 50% from the left of the parent */
+  transform: translate(-50%, -50%);
+  /* Moves the image 50% to the left and up */
+  text-align: center;
+  /* this will center the button since the button is actually  an 'a' element and is inline */
+}
+
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -25vh;
+  /* pushes about section up 25% of vh so there is no gap between header */
+}
+
+.section-features {
+  margin-top: -9rem;
+  padding: 20rem 0;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(/img/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  /* Alt way of skewing vs clip-path used in header */
+}
+.section-features > * {
+  /* Selects all direct child elements (in this case, the div with class 'row') */
+  transform: skewY(7deg);
+}
+
+.section-tours {
+  background-color: #f7f7f7;
+  padding: 25rem 0 15rem 0;
+  margin-top: -10rem;
+}
+
+.section-stories {
+  position: relative;
+  padding: 15rem 0;
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+}
+
+.book {
+  background-image: linear-gradient(105deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.9) 50%, transparent 50%), url(../img/nat-10.jpg);
+  background-size: 100%;
+  /* Same thing as 'cover' */
+  border-radius: 3px;
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.2);
+  height: 50rem;
+}
+.book__form {
+  width: 50%;
+  padding: 6rem;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,207 +1,22 @@
+@import "abstracts/functions";
+@import "abstracts/mixins";
+@import "abstracts/variables";
 
-// Variables
-$color-primary: #55c57a;
-$color-primary-light: #7ed56f;
-$color-primary-dark: #28b485;
-$color-grey-dark: #777;
-$color-white: #fff;
+@import "base/animations";
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
 
+@import "components/bg-video";
+@import "components/button";
+@import "components/card";
+@import "components/composition";
+@import "components/feature-box";
+@import "components/form";
+@import "components/story";
 
-/* Styling (usually resets) universal selector will automatically apply to all elements including pseudo of before and after. 
-Margin/padding better to apply here than on body because of inheritance */
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit; /* Because we set box-sizing: border-box in the body, all elements will inherit now */
-}
+@import "layout/grid";
+@import "layout/header";
 
-/* Most browsers have a default font-size of 16px so this will set the root 
-font-size to 10px and everything will be based on it using rem
- */
-html {
-    font-size: 62.5%;
-}
+@import "pages/home";
 
-/* Set certain properties on the body which all elements will inherit, like font size, line-height and color */
-body {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  /* font-size: 16px; */
-  line-height: 1.7;
-  color: $color-grey-dark;
-  padding: 3rem;
-
-  box-sizing: border-box;
-}
-
-.header {
-  /* 95% of the viewport height */
-  height: 95vh;
-
-  /* Specifying two background images using a comma */
-  /* Gradient is from top left corner down to bottom right */
-  background-image: linear-gradient(
-      to right bottom,
-      rgba($color-primary-light, 0.8),
-      rgba($color-primary-dark, 0.8)
-    ),
-    url(../img/hero.jpg);
-  background-size: cover;
-  background-position: top;
-  position: relative; /* Needed since child elements are positioned absolute */
-
-  /* References the 4 corners of the image and their positioning - See Jonas's explanation */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-}
-
-.header__logo-box {
-  position: absolute;
-  top: 4rem; /* 40px down from the top of parent */
-  left: 4rem; /* 40px over from the left of parent */
-}
-
-.header__logo {
-  height: 3.5rem; /* Width not needed, it will automatically compute */
-}
-
-.header__text-box {
-  position: absolute; /* First step in centering */
-  top: 40%; /* Was 50% down from the top of parent (so, center) ...looked too far down so adjusted  */
-  left: 50%; /* Image starts exactly 50% from the left of the parent */
-  transform: translate(-50%, -50%); /* Moves the image 50% to the left and up */
-  text-align: center; /* this will center the button since the button is actually  an 'a' element and is inline */
-}
-
-.heading-primary {
-  color: $color-white;
-  text-transform: uppercase;
-
-  backface-visibility: hidden; /* correct the issue with the animation causing slight vertical shake */
-  margin-bottom: 6rem;
-}
-
-.heading-primary--main {
-  display: block; /* set to block so it will occupy its own line */
-  font-size: 6rem;
-  font-weight: 400;
-  letter-spacing: 3.5rem;
-
-  animation-name: moveInLeft;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-
-  /* Other useful animation properties
-    animation-delay: 3s;
-    animation-iteration-count: 3;
-    */
-}
-
-.heading-primary--sub {
-  display: block; /* set to block so it will occupy its own line */
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1.75rem;
-
-  animation: moveInRight 1s ease-out; /* shortcut for animation properties */
-}
-
-@keyframes moveInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-10rem);
-  }
-
-  80% {
-    transform: translateX(1rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-@keyframes moveInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(10rem);
-  }
-
-  80% {
-    transform: translateX(-1rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-@keyframes moveInBottom {
-  0% {
-    opacity: 0;
-    transform: translateY(3rem);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translate(0);
-  }
-}
-
-.btn:link,
-.btn:visited {
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 1.5rem 4rem;
-  display: inline-block; /* Should always do this if you want to give some padding to inline elements */
-  border-radius: 10rem;
-  transition: all 200ms;
-  position: relative;
-  font-size: 1.6rem;
-}
-
-.btn:hover {
-  transform: translateY(-3px); /* Moves up slightly on hover */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
-}
-
-.btn:active {
-  transform: translateY(-1px); /* Moves back down slightly when clicked (already on hover state, so -1px would move it back down 2px */
-  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.2); /* Make it appear that the button is further away from the user when clicked */
-}
-
-.btn--white {
-  background-color: $color-white;
-  color: $color-grey-dark;
-}
-
-/* CSS will create another "element" (pseudoelement) with the following */
-.btn::after {
-  content: ""; /* Must have this for the pseudoelement to appear */
-  display: inline-block; /* Same as .btn initial state */
-  height: 100%;
-  width: 100%;
-  border-radius: 10rem;
-  position: absolute; /* Must position parent element (.btn:link, .btn:visited) as relative for this to work */
-  top: 0;
-  left: 0;
-  z-index: -1; /* Hide behind .btn initial state */
-  transition: all 400ms;
-}
-
-.btn--white::after {
-  background-color: $color-white;
-}
-
-.btn:hover::after {
-  transform: scaleX(1.4) scaleY(1.6);
-  opacity: 0;
-}
-
-.btn--animated {
-  animation: moveInBottom 500ms ease-out 750ms; /* 750ms delay before starting */
-  animation-fill-mode: backwards; /* Sets the animation properties before the 0% start - in this case opacity 0 and translateX(30px. This prevents the button from showing up and then animating */
-}
