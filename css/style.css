@@ -127,27 +127,27 @@ body {
 }
 
 .u-center-text {
-  text-align: center;
+  text-align: center !important;
 }
 
 .u-margin-bottom-small {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem !important;
 }
 
 .u-margin-bottom-medium {
-  margin-bottom: 4rem;
+  margin-bottom: 4rem !important;
 }
 
 .u-margin-bottom-big {
-  margin-bottom: 8rem;
+  margin-bottom: 8rem !important;
 }
 
 .u-margin-top-big {
-  margin-top: 8rem;
+  margin-top: 8rem !important;
 }
 
 .u-margin-top-huge {
-  margin-top: 10rem;
+  margin-top: 10rem !important;
 }
 
 .bg-video {
@@ -169,7 +169,7 @@ body {
 .btn {
   /* CSS will create another "element" (pseudoelement) with the following */
 }
-.btn:link, .btn:visited {
+.btn, .btn:link, .btn:visited {
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -179,13 +179,16 @@ body {
   transition: all 200ms;
   position: relative;
   font-size: 1.6rem;
+  border: none;
+  cursor: pointer;
 }
-.btn:hover {
+.btn:hover, .btn:focus {
+  outline: none;
   transform: translateY(-3px);
   /* Moves up slightly on hover */
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
 }
-.btn:hover::after {
+.btn:hover::after, .btn:focus::after {
   transform: scaleX(1.4) scaleY(1.6);
   opacity: 0;
 }
@@ -448,6 +451,7 @@ body {
   /* done to prevent shift down when border is added during focus */
   width: 90%;
   display: block;
+  transition: all 300ms;
 }
 .form__input:focus {
   outline: none;
@@ -473,6 +477,47 @@ body {
   /* used because we want to animate the effect */
   visibility: hidden;
   transform: translateY(-4rem);
+}
+.form__radio-group {
+  width: 49%;
+  display: inline-block;
+}
+.form__radio-input {
+  display: none;
+}
+.form__radio-label {
+  font-size: 1.6rem;
+  cursor: pointer;
+  position: relative;
+  padding-left: 4.5rem;
+}
+.form__radio-button {
+  display: inline-block;
+  /* needed for the properties that come after */
+  height: 3rem;
+  width: 3rem;
+  border: 5px solid #55c57a;
+  border-radius: 50%;
+  position: absolute;
+  top: -0.4rem;
+  left: 0;
+}
+.form__radio-button::after {
+  content: "";
+  display: block;
+  height: 1.3rem;
+  width: 1.3rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #55c57a;
+  opacity: 0;
+  transition: opacity 200ms;
+}
+.form__radio-input:checked ~ .form__radio-label .form__radio-button::after {
+  opacity: 1;
 }
 
 .story {
@@ -531,6 +576,54 @@ body {
   transform: translateX(-4rem) scale(1);
   /* Move img to the left so it is centered + zoom effect */
   filter: blur(3px) brightness(80%);
+}
+
+.footer {
+  color: #f7f7f7;
+  background-color: #333;
+  padding: 10rem 0;
+  font-size: 1.4rem;
+}
+.footer__logo-box {
+  text-align: center;
+  margin-bottom: 8rem;
+}
+.footer__logo {
+  width: 15rem;
+  height: auto;
+}
+.footer__navigation {
+  border-top: 1px solid #777;
+  padding: 2rem;
+  display: inline-block;
+}
+.footer__list {
+  list-style: none;
+}
+.footer__item {
+  display: inline-block;
+}
+.footer__item:not(:last-child) {
+  margin-right: 1.5rem;
+}
+.footer__link:link, .footer__link:visited {
+  color: #f7f7f7;
+  background-color: #333;
+  text-decoration: none;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 200ms;
+}
+.footer__link:hover, .footer__link:active {
+  color: #55c57a;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+  transform: rotate(5deg) scale(1.3);
+}
+.footer__copyright {
+  border-top: 1px solid #777;
+  padding: 2rem;
+  width: 80%;
+  float: right;
 }
 
 .row {
@@ -607,6 +700,68 @@ body {
   /* Moves the image 50% to the left and up */
   text-align: center;
   /* this will center the button since the button is actually  an 'a' element and is inline */
+}
+
+.navigation__checkbox {
+  display: none;
+}
+.navigation__button {
+  background-color: #fff;
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 6rem;
+  right: 6rem;
+  z-index: 2000;
+}
+.navigation__background {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 50%;
+  position: fixed;
+  top: 6.5rem;
+  right: 6.5rem;
+  background-image: radial-gradient(#7ed56f, #28b485);
+  z-index: 1000;
+  transform: scale(80);
+}
+.navigation__nav {
+  height: 100vh;
+  /* the nav menu pops out and occupies the entire page */
+  width: 100%;
+  /* redundant */
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1500;
+}
+.navigation__list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  list-style: none;
+  text-align: center;
+}
+.navigation__item {
+  margin: 1rem;
+}
+.navigation__link:link, .navigation__link:visited {
+  font-size: 3rem;
+  font-weight: 300;
+  padding: 1rem 2rem;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-image: linear-gradient(120deg, transparent 0%, transparent 50%, #fff 50%);
+  background-size: 220%;
+  /* Makes the transparent part of the gradient cover the entire link so we can have the white background coming in from the right */
+  transition: all 400ms;
+}
+.navigation__link:hover, .navigation__link:active {
+  background-position: 100%;
+  color: #55c57a;
 }
 
 .section-about {

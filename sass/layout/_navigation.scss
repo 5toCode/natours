@@ -1,0 +1,72 @@
+.navigation {
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__button {
+        background-color: $color-white;
+        height: 7rem;
+        width: 7rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6rem;
+        right: 6rem;
+        z-index: 2000;
+    }
+
+    &__background {
+        height: 6rem;
+        width: 6rem;
+        border-radius: 50%;
+        position: fixed;
+        top: 6.5rem;
+        right: 6.5rem;
+        background-image: radial-gradient($color-primary-light, $color-primary-dark);
+        z-index: 1000;
+
+        transform: scale(80);
+    }
+
+    &__nav {
+        height: 100vh; /* the nav menu pops out and occupies the entire page */
+        width: 100%; /* redundant */
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1500;
+    }
+
+    &__list {
+        @include centerXandY;
+        list-style: none;
+        text-align: center;
+    }
+
+    &__item {
+        margin: 1rem;
+    }
+
+    &__link {
+
+        &:link,
+        &:visited {
+            font-size: 3rem;
+            font-weight: 300;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            text-transform: uppercase;
+    
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $color-white 50%);
+            background-size: 220%; /* Makes the transparent part of the gradient cover the entire link so we can have the white background coming in from the right */
+            transition: all 400ms;
+        }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-primary
+        }
+    }
+}
