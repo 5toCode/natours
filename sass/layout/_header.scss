@@ -17,6 +17,11 @@
     /* References the 4 corners of the image and their positioning - See Jonas's explanation */
     -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* compatibility */
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+
+    @include respond(phone) {
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); /* compatibility */
+      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    }
   
     &__logo-box {
       position: absolute;
