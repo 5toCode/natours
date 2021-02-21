@@ -13,7 +13,8 @@
     }
 
     @include respond(tab-port) {
-        max-width: 50rem;
+        max-width: 51rem;
+        padding: 0 3rem;
     }
 
     // This is needed to fix the collapsing height problem with float

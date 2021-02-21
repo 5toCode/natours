@@ -9,6 +9,16 @@
     font-size: $default-font-size;
     transform: skewX(-12deg); /* Skew the whole story -12deg */
 
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+
+    @include respond(phone) {
+    transform: skewX(0);
+    }
+
     &__shape {
         position: relative; /* Needed for caption absolute positioning */
         width: 15rem;
@@ -21,6 +31,10 @@
         clip-path: circle(50% at 50% 50%);
 
         transform: translateX(-3rem) skew(12deg); /* cannot add another transform so adding skew directly */
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skew(0);
+        }
     }
 
     &__img {
@@ -31,6 +45,10 @@
 
     &__text {
         transform: skewX(12deg); /* Skew in the opposite direction back to normal */
+
+        @include respond(phone) {
+            transform: skew(0);
+        }
     }
 
     &__caption {

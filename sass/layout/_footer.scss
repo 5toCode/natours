@@ -11,6 +11,10 @@
     &__logo-box {
         text-align: center;
         margin-bottom: 8rem;
+
+        @include respond(tab-port) {
+            margin-bottom: 6rem;
+        }
     }
 
     &__logo {
@@ -20,7 +24,7 @@
 
     &__navigation {
         border-top: 1px solid $color-grey-dark;
-        padding: 2rem;
+        padding-top: 2rem;
         display: inline-block;
 
         @include respond(tab-port) {
@@ -66,5 +70,10 @@
         padding: 2rem;
         width: 80%;
         float: right;
+
+        @include respond(tab-port) {
+            width: 100%;
+            float: none;
+        }
     }
 }
