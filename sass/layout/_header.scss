@@ -1,43 +1,70 @@
 .header {
-    /* 95% of the viewport height */
+  /* 55% of the viewport height (unless clip-path is supported ... see below */
+  height: 85vh;
+
+  /* Specifying two background images using a comma */
+  /* Gradient is from top left corner down to bottom right */
+  background-image: linear-gradient(
+      to right bottom,
+      rgba($color-primary-light, 0.8),
+      rgba($color-primary-dark, 0.8)
+    ),
+    url(../img/hero-small.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative; /* Needed since child elements are positioned absolute */
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    /* References the 4 corners of the image and their positioning - See Jonas's explanation */
+    -webkit-clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 75vh,
+      0 100%
+    ); /* webkit is for compatibility */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     height: 95vh;
-  
-    /* Specifying two background images using a comma */
-    /* Gradient is from top left corner down to bottom right */
+  }
+
+  @media (min-resolution: 192dpi) and (min-width: 37.5em),
+    (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    (min-width: 125em) {
     background-image: linear-gradient(
         to right bottom,
         rgba($color-primary-light, 0.8),
         rgba($color-primary-dark, 0.8)
       ),
       url(../img/hero.jpg);
-    background-size: cover;
-    background-position: top;
-    position: relative; /* Needed since child elements are positioned absolute */
-  
-    /* References the 4 corners of the image and their positioning - See Jonas's explanation */
-    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); /* compatibility */
-    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
-
-    @include respond(phone) {
-      -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%); /* compatibility */
-      clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
-    }
-  
-    &__logo-box {
-      position: absolute;
-      top: 4rem; /* 40px down from the top of parent */
-      left: 4rem; /* 40px over from the left of parent */
-    }
-  
-    &__logo {
-      height: 3.5rem; /* Width not needed, it will automatically compute */
-    }
-    
-    &__text-box {
-      position: absolute; /* First step in centering */
-      top: 40%; /* Was 50% down from the top of parent (so, center) ...looked too far down so adjusted  */
-      left: 50%; /* Image starts exactly 50% from the left of the parent */
-      transform: translate(-50%, -50%); /* Moves the image 50% to the left and up */
-      text-align: center; /* this will center the button since the button is actually  an 'a' element and is inline */
-    }
   }
+
+  @include respond(phone) {
+    -webkit-clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85vh,
+      0 100%
+    ); /* compatibility */
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+  }
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem; /* 40px down from the top of parent */
+    left: 4rem; /* 40px over from the left of parent */
+  }
+
+  &__logo {
+    height: 3.5rem; /* Width not needed, it will automatically compute */
+  }
+
+  &__text-box {
+    position: absolute; /* First step in centering */
+    top: 40%; /* Was 50% down from the top of parent (so, center) ...looked too far down so adjusted  */
+    left: 50%; /* Image starts exactly 50% from the left of the parent */
+    transform: translate(
+      -50%,
+      -50%
+    ); /* Moves the image 50% to the left and up */
+    text-align: center; /* this will center the button since the button is actually  an 'a' element and is inline */
+  }
+}

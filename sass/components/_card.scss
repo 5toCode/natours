@@ -15,6 +15,7 @@
     left: 0;
     width: 100%; /* because of position absolute */
 
+    -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
 
     border-radius: 3px;
