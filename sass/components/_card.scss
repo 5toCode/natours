@@ -193,9 +193,8 @@
     font-weight: 100;
   }
 
-
-
-  @include respond(tab-port) {
+  // @include respond(tab-port) { // changed this because of test for hover-capable device
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) { //if a device is touch
     height: auto;
     border-radius: 3px;
     background-color: $color-white;
@@ -218,9 +217,8 @@
     }
 
     &__details {
-        padding: 1rem 3rem;
+      padding: 1rem 3rem;
     }
-
 
     // Back side styling
     &__cta {

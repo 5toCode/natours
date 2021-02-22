@@ -40,3 +40,9 @@ body {
     padding: 0; //remove the white border around the page at width<900px
   }  
 }
+
+// When you select text on the page
+::selection {
+  background-color: $color-primary;
+  color: $color-white;
+}
